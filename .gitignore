@@ -1,4 +1,4 @@
-config.h
+
 #################
 ## Eclipse
 #################
@@ -214,7 +214,4 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
-config.h
-config.h
-config.h
-config.h
+
