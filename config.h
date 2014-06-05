@@ -549,7 +549,7 @@
 
   /************************        continuous gyro calibration        ********************/
   /* Gyrocalibration will be repeated if copter is moving during calibration. */
-    //#define GYROCALIBRATIONFAILSAFE
+    #define GYROCALIBRATIONFAILSAFE
 
   /************************        AP FlightMode        **********************************/
     /* Temporarily Disables GPS_HOLD_MODE to be able to make it possible to adjust the Hold-position when moving the sticks.*/
@@ -567,10 +567,10 @@
        the failsafe procedure is initiated. After FAILSAFE_DELAY time from failsafe detection, the level mode is on (if ACC or nunchuk is avaliable),
        PITCH, ROLL and YAW is centered and THROTTLE is set to FAILSAFE_THROTTLE value. You must set this value to descending about 1m/s or so
        for best results. This value is depended from your configuration, AUW and some other params.  Next, after FAILSAFE_OFF_DELAY the copter is disarmed, 
-       and motors is stopped. If RC pulse coming back before reached FAILSAFE_OFF_DELAY time, after the small quard time the RC control is returned to normal. */
-    //#define FAILSAFE                                // uncomment  to activate the failsafe function
+       and motors is stopped. If RC pulse coming back before reached FAILSAFE_OFF_DELAY time, after the small guard time the RC control is returned to normal. */
+    #define FAILSAFE                                // uncomment  to activate the failsafe function
     #define FAILSAFE_DELAY     10                     // Guard time for failsafe activation after signal lost. 1 step = 0.1sec - 1sec in example
-    #define FAILSAFE_OFF_DELAY 200                    // Time for Landing before motors stop in 0.1sec. 1 step = 0.1sec - 20sec in example
+    #define FAILSAFE_OFF_DELAY 150                    // Time for Landing before motors stop in 0.1sec. 1 step = 0.1sec - 15sec in example
     #define FAILSAFE_THROTTLE  (MINTHROTTLE + 200)    // (*) Throttle level used for landing - may be relative to MINTHROTTLE - as in this case
     
     #define FAILSAFE_DETECT_TRESHOLD  985
@@ -603,7 +603,7 @@
     //#define LANDING_LIGHTS_INVERT
 
     /* altitude above ground (in cm) as reported by sonar */
-    //#define LANDING_LIGHTS_AUTO_ALTITUDE 50
+    #define LANDING_LIGHTS_AUTO_ALTITUDE 50
 
     /* adopt the flasher pattern for landing light LEDs */
     //#define LANDING_LIGHTS_ADOPT_LED_FLASHER_PATTERN

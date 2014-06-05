@@ -1114,7 +1114,7 @@ void loop () {
       case 4:
         taskOrder++;
         #if SONAR
-          Sonar_update(); //debug[2] = sonarAlt;
+          Sonar_update(); debug[3] = sonarAlt;
         #endif
         #ifdef LANDING_LIGHTS_DDR
           auto_switch_landing_lights();

@@ -130,7 +130,7 @@ void ACC_init();
   #if defined(MPU6050_LPF_98HZ)
     #define MPU6050_DLPF_CFG   2
   #endif
-  #if defined(MPU6050_LPF_42HZ)
+  #if defined(MPU6050_LPF_42HZ)     //That's my case with witespyquad's default
     #define MPU6050_DLPF_CFG   3
   #endif
   #if defined(MPU6050_LPF_20HZ)
@@ -1413,7 +1413,6 @@ void ACC_getADC () {
                    ((rawADC[4]<<8) | rawADC[5])>>3 );
   ACC_Common();
 }
-
 //The MAG acquisition function must be replaced because we now talk to the MPU device
   #if defined(MPU6050_I2C_AUX_MASTER)
     void Device_Mag_getADC() {
