@@ -335,6 +335,12 @@ void evaluateCommand() {
    #if defined (DYNBALANCE)
      case MSP_SET_MOTOR:
        s_struct_w((uint8_t*)&motor,16);
+      //Sends the actual motor values to the corresponding debug[x] to permit accurate graphing while testing for vibrations.
+      //Values are between 1000 and 2000 : we soustract 1000 and divide by 10 to get 0-100.
+       debug[0] = (motor[0]-1000)/10;
+       debug[1] = (motor[1]-1000)/10;
+       debug[2] = (motor[2]-1000)/10;
+       debug[3] = (motor[3]-1000)/10;
      break;
    #endif
    #ifdef MULTIPLE_CONFIGURATION_PROFILES

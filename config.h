@@ -193,6 +193,7 @@
       //#define SRF08
       //#define SRF10
       //#define SRF23
+        #define HC_SR04
 
       /* ADC accelerometer */ // for 5DOF from sparkfun, uses analog PIN A1/A2/A3
       //#define ADCACC
@@ -373,7 +374,7 @@
 /*************************************************************************************************/
 
   /**************************************************************************************/
-  /********                      Promini Specifig Settings           ********************/
+  /********                      Promini Specific Settings           ********************/
   /**************************************************************************************/
 
     /**************************    Hexa Motor 5 & 6 Pins    *******************************/
@@ -385,7 +386,7 @@
     /*********************************    Aux 2 Pin     ***********************************/
       /* possibility to use PIN8 or PIN12 as the AUX2 RC input (only one, not both)
          it deactivates in this case the POWER PIN (pin 12) or the BUZZER PIN (pin 8) */
-      #define RCAUXPIN8
+      //#define RCAUXPIN8
       //#define RCAUXPIN12
 
 
@@ -441,6 +442,7 @@
   /* only enable any of this if you must change the default pin assignment, e.g. your board does not have a specific pin */
   /* you may need to change PINx and PORTx plus #shift according to the desired pin! */
   //#define OVERRIDE_V_BATPIN                   A0 // instead of A3    // Analog PIN 3
+  #define OVERRIDE_V_BATPIN                     A15 //Instead of A0 on a Mega. I don't have A0 handy on the Mw Pro Mini so I use A15 which is normally used for Aux4.
 
   //#define OVERRIDE_PSENSORPIN                 A1 // instead of A2    // Analog PIN 2
 
@@ -452,6 +454,9 @@
   //#define OVERRIDE_BUZZERPIN_PINMODE          pinMode (A2, OUTPUT); // use A2 instead of d8
   //#define OVERRIDE_BUZZERPIN_ON               PORTC |= 1<<2 //PORTB |= 1;
   //#define OVERRIDE_BUZZERPIN_OFF              PORTC &= ~(1<<2); //PORTB &= ~1;
+  #define OVERRIDE_BUZZERPIN_PINMODE            pinMode (10, OUTPUT); //I'm on a MEGA2560 but I don't want to use pin32 (it's already assigned to a big RGB LED on the Witespyquad Multiwii Pro Mini) but keep D8. See def.h there's a rule to use pin32 if Mega.
+  #define OVERRIDE_BUZZERPIN_ON                 PORTB |= 1<<4;
+  #define OVERRIDE_BUZZERPIN_OFF                PORTB &= ~(1<<4);
 
 /*************************************************************************************************/
 /*****************                                                                 ***************/
@@ -610,7 +615,7 @@
 
   /*************************    INFLIGHT ACC Calibration    *****************************/
     /* This will activate the ACC-Inflight calibration if unchecked */
-    //#define INFLIGHT_ACC_CALIBRATION
+    #define INFLIGHT_ACC_CALIBRATION
 
   /*******************************    OSD Switch    *************************************/
     // This adds a box that can be interpreted by OSD in activation status (to switch on/off the overlay for instance)
@@ -794,8 +799,8 @@
   /********************************************************************/
   /****                             Buzzer                         ****/
   /********************************************************************/
-    //#define BUZZER
-    //#define RCOPTIONSBEEP         // uncomment this if you want the buzzer to beep at any rcOptions change on channel Aux1 to Aux4
+    #define BUZZER
+    #define RCOPTIONSBEEP         // uncomment this if you want the buzzer to beep at any rcOptions change on channel Aux1 to Aux4
     //#define ARMEDTIMEWARNING 330  // (*) Trigger an alarm after a certain time of being armed [s] to save you lipo (if your TX does not have a countdown)
     //#define PILOTLAMP             //Uncomment if you are using a X-Arcraft Pilot Lamp
 
@@ -807,7 +812,7 @@
        with R1=33k and R2=51k
        vbat = [0;1023]*16/VBATSCALE
        must be associated with #define BUZZER ! */
-    //#define VBAT              // uncomment this line to activate the vbat code
+    #define VBAT              // uncomment this line to activate the vbat code
     #define VBATSCALE       131 // (*) (**) change this value if readed Battery voltage is different than real voltage
     #define VBATNOMINAL     126 // 12,6V full battery nominal voltage - only used for lcd.telemetry
     #define VBATLEVEL_WARN1 107 // (*) (**) 10,7V
@@ -882,7 +887,7 @@
      * It must be 16 characters total,
      * The last 4 characters will be overwritten with the version number.
      */
-    #define BOARD_NAME "MultiWii   V-.--"
+    #define BOARD_NAME "esQuad     V-.--"
     //                  123456789.123456
 
   /*************      Support multiple configuration profiles in EEPROM     ************/
@@ -1000,9 +1005,9 @@
      *                #failsafe@disarm, #i2c_errs@disarm
      * Enable one or more options to show the log
      */
-    //#define LOG_PERMANENT
-    //#define LOG_PERMANENT_SHOW_AT_STARTUP // enable to display log at startup
-    //#define LOG_PERMANENT_SHOW_AT_L // enable to display log when receiving 'L'
+    #define LOG_PERMANENT
+    #define LOG_PERMANENT_SHOW_AT_STARTUP // enable to display log at startup
+    #define LOG_PERMANENT_SHOW_AT_L // enable to display log when receiving 'L'
     //#define LOG_PERMANENT_SHOW_AFTER_CONFIG // enable to display log after exiting LCD config menu
     //#define LOG_PERMANENT_SERVICE_LIFETIME 36000 // in seconds; service alert at startup after 10 hours of armed time
 

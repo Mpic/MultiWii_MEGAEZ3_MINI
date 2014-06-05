@@ -424,6 +424,7 @@ void annexCode() { // this code is excetuted at each loop and won't interfere wi
           analog.vbat = ((vsum /VBAT_SMOOTH) * 16) / conf.vbatscale; // result is Vbatt in 0.1V steps
         #endif
       #endif
+      debug[1] = analog.vbat;   //Make vbat graphable
       break;
   }
   #endif // VBAT
@@ -1087,23 +1088,26 @@ void loop () {
     #endif
  
   } else { // not in rc loop
-    static uint8_t taskOrder=0; // never call all functions in the same loop, to avoid high delay spikes
-    if(taskOrder>4) taskOrder-=5;
+    static uint8_t taskOrder  = 0; // never call all functions in the same loop, to avoid high delay spikes
+    if(taskOrder>4) taskOrder -= 5;
     switch (taskOrder) {
       case 0:
         taskOrder++;
         #if MAG
-          if (Mag_getADC()) break; // max 350 µs (HMC5883) // only break when we actually did something
+          if (Mag_getADC()) 
+            break; // max 350 µs (HMC5883) // only break when we actually did something
         #endif
       case 1:
         taskOrder++;
         #if BARO
-          if (Baro_update() != 0 ) break;
+          if (Baro_update() != 0 ) 
+            break;
         #endif
       case 2:
         taskOrder++;
         #if BARO
-          if (getEstimatedAltitude() !=0) break;
+          if (getEstimatedAltitude() !=0) 
+            break;
         #endif    
       case 3:
         taskOrder++;
